@@ -1,0 +1,63 @@
+{
+  "name": "@translateapi/translateapi.js",
+  "description": "The official TranslateAPI JavaScript SDK.",
+  "version": "1.0.0",
+  "author": {
+    "name": "TranslateAPI",
+    "email": "contact@translateapi.com",
+    "url": "https://translateapi.com"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://translateapi.com",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/translateapi/translateapi.js.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/translateapi/translateapi.js/issues"
+  },
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "keywords": ["api", "sdk", "translateapi", "javascript", "typescript"],
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "dev": "bun run --watch examples/index.ts",
+    "build": "tsup",
+    "export-size": "export-size .",
+    "format": "prettier --write .",
+    "lint:fix": "eslint 'src/**/*.{js,ts}' --fix",
+    "lint": "eslint 'src/**/*.{js,ts}'",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@typescript-eslint/eslint-plugin": "6.20.0",
+    "@typescript-eslint/parser": "6.20.0",
+    "eslint": "8.56.0",
+    "export-size": "0.7.0",
+    "prettier": "3.2.5",
+    "tsup": "8.0.2",
+    "typescript": "5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
