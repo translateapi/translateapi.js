@@ -36,8 +36,17 @@
       }
     }
   },
-  "keywords": ["api", "sdk", "translateapi", "javascript", "typescript"],
-  "files": ["dist", "README.md"],
+  "keywords": [
+    "api",
+    "sdk",
+    "translateapi",
+    "javascript",
+    "typescript"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "bun run --watch examples/index.ts",
     "build": "tsup",

@@ -1,8 +1,12 @@
+export type SetupTranslateAPIConfig = {
+  defaultLanguage: string
+  defaultNamespace: string
+}
+
 export type TranslateAPIConfig = {
-  defaultLanguage: string;
-  defaultNamespace: string;
-};
+  language: string
+} & SetupTranslateAPIConfig
 
 export type Translation = {
-  [translationKey: string]: string;
-};
+  [translationKey: string]: string
+}
