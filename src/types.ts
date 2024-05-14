@@ -1,4 +1,5 @@
 export type SetupTranslateAPIConfig = {
+  readToken: string
   defaultLanguage: string
   defaultNamespace: string
 }

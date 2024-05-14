@@ -6,6 +6,7 @@ const locales = await import(`../public/locales.json`)
 const translations: { [namespace: string]: Translation } = {}
 
 export function setupTranslateAPI(setupConfig: SetupTranslateAPIConfig) {
+  config.readToken = setupConfig.readToken
   config.defaultLanguage = setupConfig.defaultLanguage
   config.language = setupConfig.defaultLanguage
   config.defaultNamespace = setupConfig.defaultNamespace
@@ -41,7 +42,7 @@ async function fetchTranslations(namespace?: string) {
     namespace ?? formatNamespace(config.defaultNamespace)
 
   const response = await fetch(
-    `https://1-horizon-isnice.b-cdn.net/${formattedNamespace}/${config.language}.json`
+    `https://${config.readToken}.b-cdn.net/${formattedNamespace}/${config.language}.json`
   )
 
   if (!response.ok) {
