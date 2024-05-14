@@ -11,3 +11,8 @@ export type TranslateAPIConfig = {
 export type Translation = {
   [translationKey: string]: string
 }
+
+export type TranslateFunction = (
+  translationKey: string,
+  fallback?: string
+) => string

@@ -1,9 +1,15 @@
 import { config } from "./config"
 import { formatNamespace } from "./utils"
-import type { SetupTranslateAPIConfig, Translation } from "./types"
+import type {
+  SetupTranslateAPIConfig,
+  TranslateFunction,
+  Translation,
+} from "./types"
 const locales = await import(`../public/locales.json`)
 
 const translations: { [namespace: string]: Translation } = {}
+
+export type { TranslateFunction, Translation }
 
 export function setupTranslateAPI(setupConfig: SetupTranslateAPIConfig) {
   config.readToken = setupConfig.readToken
@@ -12,16 +18,18 @@ export function setupTranslateAPI(setupConfig: SetupTranslateAPIConfig) {
   config.defaultNamespace = setupConfig.defaultNamespace
 }
 
-export function setLanguage(language: string) {
+export async function setLanguage(language: string) {
   if (!Object.keys(locales).includes(language)) {
     throw new Error(`Language ${language} is not supported`)
   }
 
   config.language = language
-  fetchTranslations()
+  await fetchTranslations()
 }
 
-export async function useTranslations(namespace?: string) {
+export async function useTranslations(
+  namespace?: string
+): Promise<TranslateFunction> {
   const formattedNamespace = formatNamespace(
     namespace ?? config.defaultNamespace
   )
@@ -42,7 +50,7 @@ async function fetchTranslations(namespace?: string) {
     namespace ?? formatNamespace(config.defaultNamespace)
 
   const response = await fetch(
-    `https://${config.readToken}.b-cdn.net/${formattedNamespace}/${config.language}.json`
+    `https://translateapi-${config.readToken}.b-cdn.net/${formattedNamespace}/${config.language}.json`
   )
 
   if (!response.ok) {
@@ -52,5 +60,5 @@ async function fetchTranslations(namespace?: string) {
   }
 
   const json: any = await response.json()
-  translations[formattedNamespace] = json[0]
+  translations[formattedNamespace] = Object.assign({}, ...json)
 }
