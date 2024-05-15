@@ -48,7 +48,6 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "bun run --watch examples/index.ts",
     "build": "tsup",
     "export-size": "export-size .",
     "format": "prettier --write .",
