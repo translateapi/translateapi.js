@@ -1,7 +1,7 @@
 {
   "name": "@translateapi/translateapi.js",
   "description": "The official TranslateAPI JavaScript SDK.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "TranslateAPI",
     "email": "contact@translateapi.com",

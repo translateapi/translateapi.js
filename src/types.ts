@@ -12,7 +12,14 @@ export type Translation = {
   [translationKey: string]: string
 }
 
+export type TranslateOptions =
+  | {
+      fallback?: string
+      [variable: string]: string | undefined
+    }
+  | undefined
+
 export type TranslateFunction = (
   translationKey: string,
-  fallback?: string
+  options?: TranslateOptions
 ) => string
